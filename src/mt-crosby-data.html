@@ -1,0 +1,23 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/google-sheets/google-sheets.html">
+
+<dom-module id="mt-crosby-data">
+  <template>
+
+    <google-sheets id="sheet" key="1m3cdPffT9XrwMB6jZZ7isYTHmOcKqsKThn7GtW4p_So" tab-id="1"
+                    published rows="{{data}}" open-in-google-docs-url="{{openInGoogleDocsUrl}}"></google-sheets>
+
+
+  </template>
+  <script>
+    Polymer({
+      is: 'mt-crosby-data',
+      properties: {
+        data: {
+          type: Object,
+          notify: true
+        },
+      },
+    });
+  </script>
+</dom-module>

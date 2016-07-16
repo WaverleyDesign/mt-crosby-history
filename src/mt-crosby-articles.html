@@ -9,9 +9,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="text-page-template.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="mt-crosby-data.html">
 
 <dom-module id="mt-crosby-articles">
 
@@ -36,26 +38,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       @apply(--layout-horizontal);
       @apply(--layout-center);
     }
+
+    paper-input {
+      --paper-input-container-focus-color: var(--app-secondary-color);
+      --paper-input-container-label: {
+        font-family: 'Cormorant Garamond', serif;
+      };
+      --paper-input-container-input: {
+        font-family: 'Cormorant Garamond', serif;
+      };
+
+    }
     </style>
+
+    <mt-crosby-data data="{{data}}"></mt-crosby-data>
 
     <text-page-template>
 
       <h2>Browse Articles</h2>
 
-      <p class="horizontal layout">
-        <span>
-          <span class="title">Did You Know?</span>
-          <br>
-          <span class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ...</span>
-        </span>
-        <span class="flex"></span>
-        <span class="buttons">
-          <a target="_blank" href="#">read more</a>&nbsp;
-          &nbsp;<a target="_blank" href="#">see image</a>
-        </span>
-      </p>
+      <paper-input label="Search..." value="{{searchString}}"></paper-input>
 
-      <template is="dom-repeat" items="" index-as="index"></template>
+
+
+      <template filter="{{computeFilter(searchString)}}" is="dom-repeat" items="{{data}}" as="article" index-as="index">
+        <p class="horizontal layout">
+          <span>
+            <span class="title">{{article.gsx$heading.$t}}</span>
+            <br>
+            <span class="subtitle">{{article.gsx$sample.$t}}</span>
+          </span>
+          <span class="flex"></span>
+          <span class="buttons">
+            <a target="_blank" href="#">read more</a>&nbsp;
+            &nbsp;<a target="_blank" href="#">see image</a>
+          </span>
+        </p>
+      </template>
 
 
     </text-page-template>
@@ -66,7 +85,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     Polymer({
 
-      is: 'mt-crosby-articles'
+      is: 'mt-crosby-articles',
+
+      computeFilter: function(string) {
+        if (!string) {
+          // set filter to null to disable filtering
+          return null;
+        } else {
+          // return a filter function for the current search string
+          string = string.toLowerCase();
+          return function(article) {
+            var heading = article.gsx$heading.$t.toLowerCase();
+            var tags = article.gsx$tags.$t.toLowerCase();
+            return (heading.indexOf(string) != -1 ||
+                tags.indexOf(string) != -1);
+          };
+        }
+      },
 
     });
 
