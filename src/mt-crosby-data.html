@@ -1,11 +1,13 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/google-sheets/google-sheets.html">
-
 <dom-module id="mt-crosby-data">
   <template>
 
     <google-sheets id="sheet" key="1m3cdPffT9XrwMB6jZZ7isYTHmOcKqsKThn7GtW4p_So" tab-id="1"
-                    published rows="{{data}}" open-in-google-docs-url="{{openInGoogleDocsUrl}}"></google-sheets>
+                    published rows="{{data}}"></google-sheets>
+
+    <google-sheets id="sheetTwo" key="1m3cdPffT9XrwMB6jZZ7isYTHmOcKqsKThn7GtW4p_So" tab-id="2"
+                    published rows="{{sidebarElements}}"></google-sheets>
 
 
   </template>
@@ -14,6 +16,10 @@
       is: 'mt-crosby-data',
       properties: {
         data: {
+          type: Object,
+          notify: true
+        },
+        sidebarElements: {
           type: Object,
           notify: true
         },

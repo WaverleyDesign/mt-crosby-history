@@ -23,6 +23,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="mt-crosby-icons.html">
+<link rel="import" href="mt-crosby-html.html">
+<link rel="import" href="mt-crosby-data.html">
 <link rel="import" href="mt-crosby-slider.html">
 <link rel="import" href="shared-styles.html">
 
@@ -68,13 +70,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding-left: 32px;
       }
 
+      footer {
+        max-width: 950px;
+      }
 
-
+      .text-page-template.footer {
+        width: auto;
+        margin-top: 0px;
+      }
 
       paper-material.drawericle {
         background: white;
         text-align: left;
         border-radius: 5px;
+        padding: 16px 0px;
       }
 
       .home-link {
@@ -82,6 +91,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: var(--app-secondary-color);
       }
 
+      app-drawer {
+        --app-drawer-width: 324px;
+      }
+
+      .drawericle-content {
+        margin: 0px 16px;
+      }
+
+      .drawericle-content > * {
+        margin: 0px;
+      }
 
 
     </style>
@@ -92,6 +112,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         pattern="/:page"
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
+
+        <mt-crosby-data sidebar-elements="{{sidebarElements}}"></mt-crosby-data>
 
         <iron-media-query query="min-width: 640px" query-matches="{{!mobile}}">
         </iron-media-query>
@@ -117,9 +139,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </iron-selector>
           </div>
 
-          <paper-material class="drawericle" elevation="1">
-            <h2>Hey</h2>
-          </paper-material>
+          <template is="dom-repeat" items="{{sidebarElements}}" as="sidebarElement" index-as="index">
+            <paper-material class="drawericle" elevation="1">
+              <div class="drawericle-content">
+                <h2 hidden$="{{!sidebarElement.gsx$heading.$t}}">{{sidebarElement.gsx$heading.$t}}</h2>
+                <mt-crosby-html hidden$="{{!sidebarElement.gsx$html.$t}}" html="{{sidebarElement.gsx$html.$t}}"></mt-crosby-html>
+                <p hidden$="{{!sidebarElement.gsx$text.$t}}">
+                  {{sidebarElement.gsx$text.$t}}
+                </p>
+              </div>
+            </paper-material>
+          </template>
+
+
         </div>
 
       </app-drawer>
@@ -157,14 +189,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <mt-crosby-articles name="articles"></mt-crosby-articles>
         </iron-pages>
 
+        <footer>
+          <paper-material class="text-page-template footer" elevation="1">
+            <p>
+              Proudly designed, built, and maintained by the <a href="https://waverleydesigncompany.com">Waverley Design Company</a>
+            </p>
+            <p>
+              © Mt Crosby Historical Society and contributors 2016.
+            </p>
+          </paper-material>
+        </footer>
+
       </app-header-layout>
 
     </app-drawer-layout>
 
     <!-- <footer style="position:absolute;bottom:0px">
-      <p>
-        Proudly designed, built, and maintained by the <a href="https://waverleydesigncompany.com">Waverley Design Company</a>
-      </p>
+
     </footer> -->
 
   </template>

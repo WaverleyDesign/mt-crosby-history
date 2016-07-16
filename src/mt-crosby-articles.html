@@ -37,6 +37,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     .buttons {
       @apply(--layout-horizontal);
       @apply(--layout-center);
+      min-width: 30%;
+    margin-left: 16px;
     }
 
     paper-input {
@@ -58,8 +60,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h2>Browse Articles</h2>
 
       <paper-input label="Search..." value="{{searchString}}"></paper-input>
-
-
 
       <template filter="{{computeFilter(searchString)}}" is="dom-repeat" items="{{data}}" as="article" index-as="index">
         <p class="horizontal layout">

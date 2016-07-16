@@ -1,11 +1,12 @@
 <link rel="import" href="../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 
 <dom-module id="text-page-template">
   <template>
-      <style include="iron-flex iron-flex-alignment">
+      <style include="iron-flex iron-flex-alignment shared-styles">
       :host {
         display: block;
         max-width: 950px;
@@ -16,18 +17,11 @@
         @apply(--layout-center-justified);
       }
 
-      paper-material {
-        width: 100%;
-        background: white;
-        padding: 32px;
-        text-align: left;
-        margin: 36px;
-        border-radius: 5px;
-      }
+
     </style>
 
     <div class="center">
-      <paper-material elevation="1">
+      <paper-material class="text-page-template" elevation="1">
         <content></content>
       </paper-material>
     </div>

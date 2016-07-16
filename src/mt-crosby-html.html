@@ -1,0 +1,42 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+
+
+<dom-module id="mt-crosby-html">
+  <template>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+
+    a {
+      color: var(--app-secondary-color)
+    }
+
+    </style>
+
+    <div id="container">
+
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'mt-crosby-html',
+      properties: {
+        html: {
+          type: String,
+        },
+      },
+      ready: function() {
+        var domBind = document.createElement('template', 'dom-bind');
+        var doc = domBind.content.ownerDocument;
+        var elem = doc.createElement('div');
+        elem.innerHTML = this.html;
+        domBind.content.appendChild(elem);
+        this.$.container.appendChild(domBind);
+      },
+
+    });
+  </script>
+</dom-module>

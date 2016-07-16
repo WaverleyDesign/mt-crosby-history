@@ -20,7 +20,8 @@
     "iron-image": "PolymerElements/iron-image#^1.2.3",
     "paper-material": "PolymerElements/paper-material#^1.0.6",
     "google-sheets": "GoogleWebComponents/google-sheets#^1.0.5",
-    "paper-input": "PolymerElements/paper-input#^1.1.15"
+    "paper-input": "PolymerElements/paper-input#^1.1.15",
+    "app-storage": "PolymerElements/app-storage#^0.9.4"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"
