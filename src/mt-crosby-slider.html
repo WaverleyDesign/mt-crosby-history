@@ -1,0 +1,151 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animated-pages.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animatable.html">
+<link rel="import" href="../bower_components/neon-animation/animations/slide-from-left-animation.html">
+<link rel="import" href="../bower_components/neon-animation/animations/slide-right-animation.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="mt-crosby-icons.html">
+
+<dom-module id="mt-crosby-slider">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+        width: 100%;
+      }
+
+      iron-image {
+        width: 100%;
+      }
+
+      div.icon-holder {
+        @apply(--layout-vertical);
+        @apply(--layout-center-justified);
+        width: 40px;
+        position: absolute;
+        z-index: 500;
+
+      }
+
+      div.icon-holder.right {
+        right: 0px;
+      }
+      div.icon-holder.left {
+        left: 0px;
+      }
+
+      paper-icon-button {
+        color: white;
+      }
+
+      @media (min-width: 0px) {
+        div.icon-holder {
+          height: 100px;
+        }
+        iron-image {
+          height: 100px;
+        }
+        :host {
+          height: 100px;
+        }
+      }
+
+      @media (min-width: 640px) {
+        div.icon-holder {
+          height: 200px;
+        }
+        iron-image {
+          height: 200px;
+        }
+        :host {
+          height: 200px;
+        }
+      }
+    </style>
+
+    <iron-media-query query="min-width: 640px" query-matches="{{!mobile}}"></iron-media-query>
+
+    <neon-animated-pages selected="0" id="slider" entry-animation="slide-from-left-animation" exit-animation="slide-right-animation">
+      <template is="dom-repeat" items="{{images}}" as="image" index-as="index">
+        <neon-animatable>
+          <iron-image src="{{computeImagePath(image.src, mobile)}}" alt="{{image.alt}}" preload  sizing="cover"></iron-image>
+        </neon-animatable>
+      </template>
+    </neon-animated-pages>
+
+<div class="icon-holder right">
+  <paper-icon-button icon="chevron-right" on-tap="nextSlide"></paper-icon-button>
+</div>
+<div class="icon-holder left">
+  <paper-icon-button icon="chevron-left" on-tap="previousSlide"></paper-icon-button>
+</div>
+
+
+  </template>
+  <script>
+    Polymer({
+      is: 'mt-crosby-slider',
+      properties: {
+        images: {
+          type: Array,
+          value: function() { return [
+            {src: 'one.jpg', alt: ''},
+            {src: 'two.jpg', alt: ''},
+            {src: 'three.jpg', alt: ''},
+            {src: 'four.jpg', alt: ''},
+            {src: 'five.jpg', alt: ''},
+            {src: 'six.jpg', alt: ''},
+            {src: 'seven.jpg', alt: ''},
+            {src: 'eight.jpg', alt: ''},
+            {src: 'nine.jpg', alt: ''},
+            {src: 'ten.jpg', alt: ''},
+            {src: 'elevent.jpg', alt: ''},
+            {src: 'twelve.jpg', alt: ''},
+            {src: 'thirteen.jpg', alt: ''},
+            {src: 'fourteen.jpg', alt: ''},
+            {src: 'fifteen.jpg', alt: ''},
+            {src: 'sixteen.jpg', alt: ''},
+            {src: 'seventeen.jpg', alt: ''},
+            {src: 'eighteen.jpg', alt: ''},
+            {src: 'nineteen.jpg', alt: ''},
+            {src: 'twenty.jpg', alt: ''},
+            {src: 'twentyone.jpg', alt: ''},
+            {src: 'twentytwo.jpg', alt: ''},
+            {src: 'twentythree.jpg', alt: ''},
+            {src: 'twentyfour.jpg', alt: ''},
+            {src: 'twentyfive.jpg', alt: ''},
+            {src: 'twentysix.jpg', alt: ''},
+            {src: 'twentyseven.jpg', alt: ''},
+          ]; }
+        },
+      },
+
+      computeImagePath: function(path, mobile) {
+        if (mobile) {
+          return '../images/panoramas/mobile/' + path;
+        } else {
+          return '../images/panoramas/' + path;
+        }
+      },
+
+      nextSlide: function() {
+        this.$.slider.selectNext();
+      },
+      previousSlide: function() {
+        this.$.slider.selectPrevious();
+      },
+
+      attached: function () {
+        this._countDown();
+      },
+
+      _countDown: function () {
+        this.nextSlide();
+        this.async(this._countDown, 5000);
+      },
+    });
+  </script>
+</dom-module>

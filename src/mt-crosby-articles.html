@@ -1,0 +1,75 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="text-page-template.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="mt-crosby-articles">
+
+  <template>
+
+    <style include="shared-styles iron-flex iron-flex-alignment">
+    :host {
+      display: block;
+    }
+
+    .title {
+      font-size: 18px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--paper-blue-grey-600, #999);
+      text-overflow: ellipsis;
+    }
+
+    .buttons {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+    }
+    </style>
+
+    <text-page-template>
+
+      <h2>Browse Articles</h2>
+
+      <p class="horizontal layout">
+        <span>
+          <span class="title">Did You Know?</span>
+          <br>
+          <span class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ...</span>
+        </span>
+        <span class="flex"></span>
+        <span class="buttons">
+          <a target="_blank" href="#">read more</a>&nbsp;
+          &nbsp;<a target="_blank" href="#">see image</a>
+        </span>
+      </p>
+
+      <template is="dom-repeat" items="" index-as="index"></template>
+
+
+    </text-page-template>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'mt-crosby-articles'
+
+    });
+
+  </script>
+
+</dom-module>

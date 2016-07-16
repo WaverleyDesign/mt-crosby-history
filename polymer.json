@@ -1,0 +1,9 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/mt-crosby-app.html",
+  "fragments": [
+    "src/mt-crosby-home.html",
+    "src/mt-crosby-about.html",
+    "src/mt-crosby-contact.html"
+  ]
+}

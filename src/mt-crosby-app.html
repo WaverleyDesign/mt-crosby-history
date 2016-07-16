@@ -1,0 +1,218 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="mt-crosby-icons.html">
+<link rel="import" href="mt-crosby-slider.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="mt-crosby-app">
+
+  <template>
+
+    <style include="iron-flex iron-flex-alignment shared-styles">
+
+      :host {
+        display: block;
+        --app-primary-color: var(--paper-teal-500);
+        --app-secondary-color: var(--paper-blue-grey-900);
+      }
+
+      app-header {
+        background-color: white;
+        color: var(--app-secondary-color);
+      }
+      app-header paper-icon-button {
+        --paper-icon-button-ink-color: white;
+      }
+
+      .drawer-list.toolbar {
+        @apply(--layout-horizontal);
+      }
+      .drawer-list.drawer {
+        @apply(--layout-vertical);
+      }
+      .drawer-list a {
+        display: block;
+        padding: 0 16px;
+        max-width: ;
+        line-height: 40px;
+        text-decoration: none;
+        color: var(--app-secondary-color);
+      }
+      .drawer-list a.iron-selected {
+        color: black;
+        font-weight: bold;
+      }
+      .drawer-list a.subroute {
+        padding-left: 32px;
+      }
+
+
+
+
+      paper-material.drawericle {
+        background: white;
+        text-align: left;
+        border-radius: 5px;
+      }
+
+      .home-link {
+        text-decoration: none;
+        color: var(--app-secondary-color);
+      }
+
+
+
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+
+        <iron-media-query query="min-width: 640px" query-matches="{{!mobile}}">
+        </iron-media-query>
+
+          <mt-crosby-slider></mt-crosby-slider>
+
+
+    <app-drawer-layout fullbleed>
+
+      <!-- Drawer content -->
+      <app-drawer id="drawer">
+        <app-header shadow fixed>
+          <app-toolbar>Mt Crosby History</app-toolbar>
+
+        </app-header>
+        <div class="drawer-content">
+          <div class="nav-container drawer" on-tap="computeClose">
+            <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list drawer" role="navigation">
+              <a name="home" href="/home">home</a>
+              <a name="about" href="/about">about</a>
+              <a name="contact" href="/contact">contact</a>
+              <a name="articles" href="/articles">articles</a>
+            </iron-selector>
+          </div>
+
+          <paper-material class="drawericle" elevation="1">
+            <h2>Hey</h2>
+          </paper-material>
+        </div>
+
+      </app-drawer>
+
+      <!-- Main content -->
+      <app-header-layout has-scrolling-region>
+
+        <app-header shadow fixed>
+          <app-toolbar>
+            <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+
+              <div title>
+                <a href="/home" class="home-link">
+                  <span hidden="{{!mobile}}">Mt Crosby History</span>
+                </a>
+              </div>
+
+
+            <div class="nav-container toolbar">
+              <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list toolbar" role="navigation">
+                <a name="home" href="/home">home</a>
+                <a name="about" href="/about">about</a>
+                <a name="contact" href="/contact">contact</a>
+                <a name="articles" href="/articles">articles</a>
+              </iron-selector>
+            </div>
+
+          </app-toolbar>
+        </app-header>
+
+        <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
+          <mt-crosby-home name="home"></mt-crosby-home>
+          <mt-crosby-about name="about"></mt-crosby-about>
+          <mt-crosby-contact name="contact"></mt-crosby-contact>
+          <mt-crosby-articles name="articles"></mt-crosby-articles>
+        </iron-pages>
+
+      </app-header-layout>
+
+    </app-drawer-layout>
+
+    <!-- <footer style="position:absolute;bottom:0px">
+      <p>
+        Proudly designed, built, and maintained by the <a href="https://waverleydesigncompany.com">Waverley Design Company</a>
+      </p>
+    </footer> -->
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'mt-crosby-app',
+
+      properties: {
+
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged'
+        },
+
+      },
+
+      observers: [
+        '_routePageChanged(routeData.page)'
+      ],
+
+      _routePageChanged: function(page) {
+        this.page = page || 'home';
+      },
+
+      _pageChanged: function(page) {
+        // load page import on demand.
+        this.importHref(
+          this.resolveUrl('mt-crosby-' + page + '.html'), null, null, true);
+      },
+
+      computeClose: function() {
+        if (this.mobile) {
+          this.closeDrawer();
+        } else {
+          console.log('drawer unclosed');
+        }
+      },
+
+      closeDrawer: function() {
+        this.$.drawer.close();
+      }
+
+    });
+
+  </script>
+
+</dom-module>

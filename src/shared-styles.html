@@ -1,0 +1,68 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="shared-styles">
+  <template>
+    <style>
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Cormorant SC', 'Garamond', 'Georgia', serif;
+      }
+
+      p {
+        font-family: 'Cormorant Garamond', 'Garamond', 'Georgia', serif;
+      }
+
+      @media (min-width: 0px) {
+        mt-crosby-slider {
+          height: 100px;
+          width: 100%;
+        }
+        app-drawer, app-drawer-layout {
+          --app-drawer-content-container: {background:transparent};
+          margin-top: 95px;
+        }
+        .drawer-content {
+          background: #fafafa;
+          height: 100%;
+        }
+        .nav-container.toolbar {
+          display: none;
+        }
+        .nav-container.drawer {
+          display: block;
+        }
+        .drawericle {
+          width: calc(100%);
+          margin: 0px;
+        }
+      }
+
+      @media (min-width: 640px) {
+        app-drawer, app-drawer-layout {
+          --app-drawer-content-container: {background:transparent};
+          margin-top: 195px;
+        }
+        mt-crosby-slider {
+          height: 200px;
+        }
+        .drawer-content {
+          background: transparent;
+        }
+        .nav-container.toolbar {
+          display: block;
+        }
+        .nav-container.drawer {
+          display: none;
+        }
+        .drawericle {
+          width: calc(100% - 36px);
+          margin: 36px;
+        }
+      }
+
+      a {
+        color: var(--app-secondary-color);
+        text-decoration: underline;
+      }
+    </style>
+  </template>
+</dom-module>
