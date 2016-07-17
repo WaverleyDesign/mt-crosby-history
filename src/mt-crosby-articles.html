@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="text-page-template.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="mt-crosby-data.html">
+<link rel="import" href="mt-crosby-article-item.html">
 
 <dom-module id="mt-crosby-articles">
 
@@ -24,22 +25,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: block;
     }
 
-    .title {
-      font-size: 18px;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: var(--paper-blue-grey-600, #999);
-      text-overflow: ellipsis;
-    }
-
-    .buttons {
-      @apply(--layout-horizontal);
-      @apply(--layout-center);
-      min-width: 30%;
-    margin-left: 16px;
-    }
 
     paper-input {
       --paper-input-container-focus-color: var(--app-secondary-color);
@@ -62,18 +47,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-input label="Search..." value="{{searchString}}"></paper-input>
 
       <template filter="{{computeFilter(searchString)}}" is="dom-repeat" items="{{data}}" as="article" index-as="index">
-        <p class="horizontal layout">
-          <span>
-            <span class="title">{{article.gsx$heading.$t}}</span>
-            <br>
-            <span class="subtitle">{{article.gsx$sample.$t}}</span>
-          </span>
-          <span class="flex"></span>
-          <span class="buttons">
-            <a target="_blank" href="#">read more</a>&nbsp;
-            &nbsp;<a target="_blank" href="#">see image</a>
-          </span>
-        </p>
+
+        <mt-crosby-article-item article="{{article}}"></mt-crosby-article-item>
+
       </template>
 
 

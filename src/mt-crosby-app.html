@@ -113,6 +113,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
+
+
         <mt-crosby-data sidebar-elements="{{sidebarElements}}"></mt-crosby-data>
 
         <iron-media-query query="min-width: 640px" query-matches="{{!mobile}}">
@@ -128,7 +130,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header shadow fixed>
           <app-toolbar>Mt Crosby History</app-toolbar>
 
-        </app-header>
+        </app-header style="z-index:2">
         <div class="drawer-content">
           <div class="nav-container drawer" on-tap="computeClose">
             <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list drawer" role="navigation">
@@ -159,7 +161,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
 
-        <app-header shadow fixed>
+        <app-header shadow fixed style="z-index:2">
           <app-toolbar>
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
 
@@ -187,6 +189,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <mt-crosby-about name="about"></mt-crosby-about>
           <mt-crosby-contact name="contact"></mt-crosby-contact>
           <mt-crosby-articles name="articles"></mt-crosby-articles>
+          <mt-crosby-detail route="[[subroute]]" name="detail"></mt-crosby-detail>
         </iron-pages>
 
         <footer>

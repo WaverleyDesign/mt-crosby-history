@@ -1,0 +1,109 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="text-page-template.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="mt-crosby-detail">
+
+  <template>
+
+    <style include="shared-styles iron-flex iron-flex-alignment">
+    :host {
+      display: block;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    p.ack {
+      margin-top: 0px;
+    }
+
+    .right-align {
+      text-align: right;
+    }
+    </style>
+
+    <app-route
+      route="[[route]]"
+      pattern="/:image"
+      data="{{routeData}}"></app-route>
+
+    <app-route
+      route="[[route]]"
+      pattern="/:image/:alt"
+      data="{{altRouteData}}"></app-route>
+
+    <app-route
+      route="[[route]]"
+      pattern="/:image/:alt/:link"
+      data="{{linkRouteData}}"></app-route>
+
+    <app-route
+      route="[[route]]"
+      pattern="/:image/:alt/:link/:ack"
+      data="{{ackRouteData}}"></app-route>
+
+
+
+    <text-page-template>
+
+
+
+      <h3>{{decodeUri(altRouteData.alt)}}</h3>
+
+      <img src$="../../../../resources/{{routeData.image}}" alt$="{{decodeUri(altRouteData.alt)}}"/>
+
+      <div class="horizontal layout">
+        <p class="ack">&nbsp;</p>
+        <a href="/articles">Go Back</a>
+
+        <span class="flex"></span>
+        <div class="right-align">
+          <p class="ack">
+            Photo courtesy of: {{decodeUri(ackRouteData.ack)}}
+
+          </p>
+
+          <a target="_blank" href$="../resources/{{linkRouteData.link}}" download>download the article</a>
+        </div>
+      </div>
+
+    </text-page-template>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'mt-crosby-detail',
+
+      properties: {
+        route: Object,
+
+        routeData: Object,
+      },
+
+      decodeUri: function(toDecode) {
+        return decodeURIComponent(toDecode);
+      },
+
+    });
+
+  </script>
+
+</dom-module>
