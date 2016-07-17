@@ -1,7 +1,7 @@
 {
-  "name": "app-drawer-template",
+  "name": "mt-crosby-history",
   "authors": [
-    "The Polymer Authors"
+    "Mt Crosby Historical Society, Waverley Design Company"
   ],
   "private": true,
   "dependencies": {
@@ -21,7 +21,6 @@
     "paper-material": "PolymerElements/paper-material#^1.0.6",
     "google-sheets": "GoogleWebComponents/google-sheets#^1.0.5",
     "paper-input": "PolymerElements/paper-input#^1.1.15",
-    "app-storage": "PolymerElements/app-storage#^0.9.4",
     "paper-dialog": "PolymerElements/paper-dialog#^1.1.0"
   },
   "devDependencies": {

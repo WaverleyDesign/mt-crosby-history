@@ -16,8 +16,13 @@
       }
 
       .drawer-content {
-        overflow-y: scroll;
+        overflow-y: auto;
       }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
 
       @media (min-width: 0px) {
         mt-crosby-slider {
@@ -31,6 +36,7 @@
         .drawer-content {
           background: #fafafa;
           height: 100%;
+          z-index: 1;
         }
         .nav-container.toolbar {
           display: none;
@@ -54,6 +60,7 @@
         }
         .drawer-content {
           background: transparent;
+          z-index: -2;
         }
         .nav-container.toolbar {
           display: block;
