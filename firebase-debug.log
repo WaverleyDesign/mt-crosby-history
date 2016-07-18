@@ -1,0 +1,42 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] CLI Version:  3.0.0
+[debug] Platform:     darwin
+[debug] Node Version: v5.11.0
+[debug] Time:         Sun Jul 17 2016 19:27:51 GMT+1000 (AEST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /Users/waverleydesigncompany/GitHub/mt-crosby-history
+[info] Public Directory: build/unbundled
+[info] 
+[info] Server listening at: http://localhost:5000
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] CLI Version:  3.0.0
+[debug] Platform:     darwin
+[debug] Node Version: v5.11.0
+[debug] Time:         Sun Jul 17 2016 19:30:40 GMT+1000 (AEST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /Users/waverleydesigncompany/GitHub/mt-crosby-history
+[info] Public Directory: build/bundled
+[info] 
+[info] Server listening at: http://localhost:5000
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] CLI Version:  3.0.0
+[debug] Platform:     darwin
+[debug] Node Version: v5.11.0
+[debug] Time:         Sun Jul 17 2016 19:51:34 GMT+1000 (AEST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /Users/waverleydesigncompany/GitHub/mt-crosby-history
+[info] Public Directory: build/bundled
+[info] 
+[info] Server listening at: http://localhost:5000

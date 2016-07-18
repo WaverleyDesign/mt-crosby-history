@@ -68,10 +68,11 @@
 
     <iron-media-query query="min-width: 640px" query-matches="{{!mobile}}"></iron-media-query>
 
-    <neon-animated-pages selected="0" id="slider" entry-animation="slide-from-left-animation" exit-animation="slide-right-animation">
+    <neon-animated-pages selected="{{slider}}" id="slider" entry-animation="slide-from-left-animation" exit-animation="slide-right-animation">
       <template is="dom-repeat" items="{{images}}" as="image" index-as="index">
         <neon-animatable>
           <iron-image src="{{computeImagePath(image.src, mobile)}}" alt="{{image.alt}}" preload  sizing="cover"></iron-image>
+          <!-- <img src="{{computeImagePath(image.src, mobile)}}" alt="" /> -->
         </neon-animatable>
       </template>
     </neon-animated-pages>
@@ -122,6 +123,10 @@
             {src: 'twentyeight.jpg', alt: ''},
           ]; }
         },
+        slider: {
+          type: Number,
+          value: 0
+        },
       },
 
       computeImagePath: function(path, mobile) {
@@ -133,10 +138,10 @@
       },
 
       nextSlide: function() {
-        this.$.slider.selectNext();
+        this.slider = this.slider + 1;
       },
       previousSlide: function() {
-        this.$.slider.selectPrevious();
+        this.slider = this.slider - 1;
       },
 
       attached: function () {

@@ -131,10 +131,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <!-- Drawer content -->
       <app-drawer id="drawer">
-        <app-header shadow fixed>
+        <app-header style="z-index:5" shadow fixed>
           <app-toolbar>Mt Crosby History</app-toolbar>
 
-        </app-header style="z-index:2">
+        </app-header >
         <div class="drawer-content">
           <div class="nav-container drawer" on-tap="computeClose">
             <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list drawer" role="navigation">
